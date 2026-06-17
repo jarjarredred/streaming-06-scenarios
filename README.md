@@ -6,6 +6,7 @@
 
 Modifications:
 * Updated consume_message function where if enriched is none:, it will calculate and display the data health rate. Updated log_summary so when the stream completes, it outputs a clean metric showing the percentage of data that breached the data contract.
+* Updated kafka_consumer_jarred2 process_message function so instead of letting an enrichment exception destory our process, I implemented a dead letter queue pattern using a secondary error log. If a message casuses an exception during processing, we catch the exception, log it, increment skipped count and keep reading the stream.
 
 [![API Reference](https://img.shields.io/badge/API--Utils-datafun--streaming-purple)](https://denisecase.github.io/datafun-streaming/api/)
 [![Workflow Guide](https://img.shields.io/badge/Pro--Guide-pro--analytics--02-green)](https://denisecase.github.io/pro-analytics-02/workflow-b-apply-example-project/)
